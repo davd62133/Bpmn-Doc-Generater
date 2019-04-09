@@ -5,6 +5,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 //Finally, import the W3C definitions for a DOM, DOM exceptions, entities and nodes:
+import model.Process;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -42,6 +43,22 @@ public class xmlechoparser {
         navigate(n, "",false);
     }
 
+    private static void navigateCollaboration(Node n, String prefix){
+        // Navegar los atributos del nodo
+        NamedNodeMap childAttributes = n.getAttributes();
+        if (childAttributes != null) {
+            for (int i = 0; i < childAttributes.getLength(); i++) {
+                navigateCollaboration(childAttributes.item(i), prefix + "|a----");
+            }
+        }
+
+        //Navegar los nodos hijo del nodo actual
+        NodeList childnodes = n.getChildNodes();
+        for (int i = 0; i < childnodes.getLength(); i++) {
+            navigateCollaboration(childnodes.item(i), prefix + "|-----");
+        }
+    }
+
     private static void navigate(Node n, String prefix,boolean print) {
         if(n.getNodeName().equals("model:collaboration")
         || n.getNodeName().equals("model:process")) print = true;
@@ -67,6 +84,7 @@ public class xmlechoparser {
         for (int i = 0; i < childnodes.getLength(); i++) {
             navigate(childnodes.item(i), prefix + "|-----",print);
         }
+        System.out.println(Process.print());
     }
 
     private static String getNodeTypeName(short nodeType) {

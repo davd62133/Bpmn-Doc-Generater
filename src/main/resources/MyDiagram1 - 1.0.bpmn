@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bonitaConnector="http://www.bonitasoft.org/studio/connector/definition/6.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di_1="http://www.omg.org/spec/DD/20100524/DI" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:model="http://www.omg.org/spec/BPMN/20100524/MODEL" xsi:schemaLocation="schemaLocation http://www.omg.org/spec/BPMN/20100524/MODEL schemas/BPMN20.xsd" exporter="BonitaSoft" exporterVersion="7.7.5" expressionLanguage="http://groovy.apache.org/" targetNamespace="http://bonitasoft.com/_T37B0FrSEem3-aaXI-R1Ww">
+  <model:collaboration id="_T37B0FrSEem3-aaXI-R1Ww">
+    <model:participant id="_OvWWwFrYEem3-aaXI-R1Ww" name="Pool1" processRef="_T37o4FrSEem3-aaXI-R1Ww"/>
+    <model:participant id="_T37pBFrSEem3-aaXI-R1Ww" name="Employee actor">
+      <model:documentation>This is an example of actor that is mapped to any ACME users</model:documentation>
+    </model:participant>
+    <model:participant id="_ZFzpsFrXEem3-aaXI-R1Ww" name="Empleado Prueba">
+      <model:documentation>Descripcion de prueba</model:documentation>
+    </model:participant>
+  </model:collaboration>
+  <model:process id="_T37o4FrSEem3-aaXI-R1Ww" name="Pool1">
+    <model:ioSpecification id="_OvW90FrYEem3-aaXI-R1Ww">
+      <model:inputSet id="_OvW90VrYEem3-aaXI-R1Ww"/>
+      <model:outputSet id="_OvW90lrYEem3-aaXI-R1Ww"/>
+    </model:ioSpecification>
+    <model:laneSet id="Pool1_laneSet">
+      <model:lane id="_T37o4VrSEem3-aaXI-R1Ww" name="Employee lane">
+        <model:documentation>Linea del empleado normal
+</model:documentation>
+        <model:flowNodeRef>_T37o4lrSEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_T37o51rSEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_WZ8SoFrSEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_Wx44kFrSEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_wuUMEFrXEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_xufPoFrXEem3-aaXI-R1Ww</model:flowNodeRef>
+      </model:lane>
+      <model:lane id="_UhS8sFrXEem3-aaXI-R1Ww" name="Prueba del empleado">
+        <model:documentation>Linea del empleado de prueba</model:documentation>
+        <model:flowNodeRef>_lv9BEFrXEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_reUSEFrXEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_sGnoMFrXEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_teokAFrXEem3-aaXI-R1Ww</model:flowNodeRef>
+        <model:flowNodeRef>_u8dM4FrXEem3-aaXI-R1Ww</model:flowNodeRef>
+      </model:lane>
+    </model:laneSet>
+    <model:startEvent id="_T37o4lrSEem3-aaXI-R1Ww" name="Start">
+      <model:documentation>Donde se empieza la actividad
+</model:documentation>
+    </model:startEvent>
+    <model:userTask id="_T37o51rSEem3-aaXI-R1Ww" name="Actividad 1">
+      <model:documentation>esta activiad es a primera</model:documentation>
+    </model:userTask>
+    <model:parallelGateway id="_WZ8SoFrSEem3-aaXI-R1Ww" name="Compuerta 1"/>
+    <model:serviceTask id="_Wx44kFrSEem3-aaXI-R1Ww" name="Actividad 2">
+      <model:documentation>esta activiad es la segunda</model:documentation>
+    </model:serviceTask>
+    <model:parallelGateway id="_wuUMEFrXEem3-aaXI-R1Ww" name="Compuerta 4">
+      <model:documentation>Esta es la descripcion muy basica</model:documentation>
+    </model:parallelGateway>
+    <model:endEvent id="_xufPoFrXEem3-aaXI-R1Ww" name="End"/>
+    <model:scriptTask id="_lv9BEFrXEem3-aaXI-R1Ww" name="Actividad 3">
+      <model:documentation>esta activiad es la tercera</model:documentation>
+    </model:scriptTask>
+    <model:inclusiveGateway id="_reUSEFrXEem3-aaXI-R1Ww" name="Compuerta 2">
+      <model:documentation>Esta es la descripcion d ela compuerta dos</model:documentation>
+    </model:inclusiveGateway>
+    <model:serviceTask id="_sGnoMFrXEem3-aaXI-R1Ww" name="Actividad 4">
+      <model:documentation>Esta no tiene descripcion para 
+nada</model:documentation>
+    </model:serviceTask>
+    <model:userTask id="_teokAFrXEem3-aaXI-R1Ww" name="Actividad 5"/>
+    <model:inclusiveGateway id="_u8dM4FrXEem3-aaXI-R1Ww" name="Compuerta 3"/>
+    <model:sequenceFlow id="_T37pAVrSEem3-aaXI-R1Ww" name="" sourceRef="_T37o4lrSEem3-aaXI-R1Ww" targetRef="_T37o51rSEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_WawK8FrSEem3-aaXI-R1Ww" name="" sourceRef="_T37o51rSEem3-aaXI-R1Ww" targetRef="_WZ8SoFrSEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_WyGT8FrSEem3-aaXI-R1Ww" name="" sourceRef="_WZ8SoFrSEem3-aaXI-R1Ww" targetRef="_Wx44kFrSEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_kN6mkFrXEem3-aaXI-R1Ww" name="" sourceRef="_WZ8SoFrSEem3-aaXI-R1Ww" targetRef="_lv9BEFrXEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_q_u4oFrXEem3-aaXI-R1Ww" name="" sourceRef="_lv9BEFrXEem3-aaXI-R1Ww" targetRef="_reUSEFrXEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_sGr5oFrXEem3-aaXI-R1Ww" name="" sourceRef="_reUSEFrXEem3-aaXI-R1Ww" targetRef="_sGnoMFrXEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_smFLYFrXEem3-aaXI-R1Ww" name="" sourceRef="_reUSEFrXEem3-aaXI-R1Ww" targetRef="_teokAFrXEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_uqbBsFrXEem3-aaXI-R1Ww" name="" sourceRef="_teokAFrXEem3-aaXI-R1Ww" targetRef="_u8dM4FrXEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_vU1QoFrXEem3-aaXI-R1Ww" name="" sourceRef="_sGnoMFrXEem3-aaXI-R1Ww" targetRef="_u8dM4FrXEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_wuX2cFrXEem3-aaXI-R1Ww" name="" sourceRef="_Wx44kFrSEem3-aaXI-R1Ww" targetRef="_wuUMEFrXEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_xPNSoFrXEem3-aaXI-R1Ww" name="" sourceRef="_u8dM4FrXEem3-aaXI-R1Ww" targetRef="_wuUMEFrXEem3-aaXI-R1Ww"/>
+    <model:sequenceFlow id="_xuhr4FrXEem3-aaXI-R1Ww" name="" sourceRef="_wuUMEFrXEem3-aaXI-R1Ww" targetRef="_xufPoFrXEem3-aaXI-R1Ww"/>
+  </model:process>
+  <di:BPMNDiagram name="MyDiagram1">
+    <di:BPMNPlane id="plane__T37B0FrSEem3-aaXI-R1Ww" bpmnElement="_T37B0FrSEem3-aaXI-R1Ww">
+      <di:BPMNShape id="_T37pH1rSEem3-aaXI-R1Ww" bpmnElement="_OvWWwFrYEem3-aaXI-R1Ww" isHorizontal="true">
+        <dc:Bounds height="488.0" width="1613.0" x="0.0" y="0.0"/>
+      </di:BPMNShape>
+      <di:BPMNShape id="_T37pIlrSEem3-aaXI-R1Ww" bpmnElement="_T37o4VrSEem3-aaXI-R1Ww" isHorizontal="true">
+        <dc:Bounds height="250.0" width="1583.0" x="30.0" y="0.0"/>
+      </di:BPMNShape>
+      <di:BPMNShape id="_T37pKFrSEem3-aaXI-R1Ww" bpmnElement="_T37o4lrSEem3-aaXI-R1Ww">
+        <dc:Bounds height="30.0" width="30.0" x="90.0" y="68.0"/>
+        <di:BPMNLabel id="_OvXk4VrYEem3-aaXI-R1Ww" labelStyle="_OvXk4FrYEem3-aaXI-R1Ww">
+          <dc:Bounds height="17.0" width="37.0" x="89.0" y="110.0"/>
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="_T37pJVrSEem3-aaXI-R1Ww" bpmnElement="_T37o51rSEem3-aaXI-R1Ww">
+        <dc:Bounds height="50.0" width="100.0" x="206.0" y="60.0"/>
+      </di:BPMNShape>
+      <di:BPMNShape id="_WaUtIFrSEem3-aaXI-R1Ww" bpmnElement="_WZ8SoFrSEem3-aaXI-R1Ww">
+        <dc:Bounds height="43.0" width="43.0" x="415.0" y="63.0"/>
+        <di:BPMNLabel id="_OvYL8FrYEem3-aaXI-R1Ww" labelStyle="_OvXk4FrYEem3-aaXI-R1Ww">
+          <dc:Bounds height="17.0" width="81.0" x="396.0" y="111.0"/>
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="_Wx7U0FrSEem3-aaXI-R1Ww" bpmnElement="_Wx44kFrSEem3-aaXI-R1Ww">
+        <dc:Bounds height="50.0" width="100.0" x="624.0" y="68.0"/>
+      </di:BPMNShape>
+      <di:BPMNShape id="_wuVaMFrXEem3-aaXI-R1Ww" bpmnElement="_wuUMEFrXEem3-aaXI-R1Ww">
+        <dc:Bounds height="43.0" width="43.0" x="1346.0" y="97.0"/>
+        <di:BPMNLabel id="_OvYL8lrYEem3-aaXI-R1Ww" labelStyle="_OvXk4FrYEem3-aaXI-R1Ww">
+          <dc:Bounds height="17.0" width="81.0" x="1327.0" y="145.0"/>
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="_xuf2sFrXEem3-aaXI-R1Ww" bpmnElement="_xufPoFrXEem3-aaXI-R1Ww">
+        <dc:Bounds height="30.0" width="30.0" x="1479.0" y="104.0"/>
+        <di:BPMNLabel id="_OvYL81rYEem3-aaXI-R1Ww" labelStyle="_OvXk4FrYEem3-aaXI-R1Ww">
+          <dc:Bounds height="17.0" width="22.0" x="1483.0" y="139.0"/>
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="_UhUK0FrXEem3-aaXI-R1Ww" bpmnElement="_UhS8sFrXEem3-aaXI-R1Ww" isHorizontal="true">
+        <dc:Bounds height="238.0" width="1583.0" x="30.0" y="250.0"/>
+      </di:BPMNShape>
+      <di:BPMNShape id="_lv-2QFrXEem3-aaXI-R1Ww" bpmnElement="_lv9BEFrXEem3-aaXI-R1Ww">
+        <dc:Bounds height="50.0" width="100.0" x="624.0" y="314.0"/>
+      </di:BPMNShape>
+      <di:BPMNShape id="_reWHQFrXEem3-aaXI-R1Ww" bpmnElement="_reUSEFrXEem3-aaXI-R1Ww">
+        <dc:Bounds height="43.0" width="43.0" x="795.0" y="331.0"/>
+        <di:BPMNLabel id="_OvaBIFrYEem3-aaXI-R1Ww" labelStyle="_OvXk4FrYEem3-aaXI-R1Ww">
+          <dc:Bounds height="17.0" width="81.0" x="776.0" y="379.0"/>
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="_sGpdYFrXEem3-aaXI-R1Ww" bpmnElement="_sGnoMFrXEem3-aaXI-R1Ww">
+        <dc:Bounds height="50.0" width="100.0" x="928.0" y="373.0"/>
+      </di:BPMNShape>
+      <di:BPMNShape id="_tepyIFrXEem3-aaXI-R1Ww" bpmnElement="_teokAFrXEem3-aaXI-R1Ww">
+        <dc:Bounds height="50.0" width="100.0" x="928.0" y="265.0"/>
+      </di:BPMNShape>
+      <di:BPMNShape id="_u8ebAFrXEem3-aaXI-R1Ww" bpmnElement="_u8dM4FrXEem3-aaXI-R1Ww">
+        <dc:Bounds height="43.0" width="43.0" x="1175.0" y="331.0"/>
+        <di:BPMNLabel id="_OvaBI1rYEem3-aaXI-R1Ww" labelStyle="_OvXk4FrYEem3-aaXI-R1Ww">
+          <dc:Bounds height="17.0" width="81.0" x="1156.0" y="379.0"/>
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNEdge id="_T37pN1rSEem3-aaXI-R1Ww" bpmnElement="_T37pAVrSEem3-aaXI-R1Ww">
+        <di_1:waypoint x="120.0" y="84.0"/>
+        <di_1:waypoint x="206.0" y="84.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_WawyAFrSEem3-aaXI-R1Ww" bpmnElement="_WawK8FrSEem3-aaXI-R1Ww">
+        <di_1:waypoint x="306.0" y="84.0"/>
+        <di_1:waypoint x="415.0" y="84.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_WyG7AFrSEem3-aaXI-R1Ww" bpmnElement="_WyGT8FrSEem3-aaXI-R1Ww">
+        <di_1:waypoint x="458.0" y="88.0"/>
+        <di_1:waypoint x="624.0" y="88.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_kN7NoFrXEem3-aaXI-R1Ww" bpmnElement="_kN6mkFrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="456.0" y="106.0"/>
+        <di_1:waypoint x="456.0" y="211.0"/>
+        <di_1:waypoint x="650.0" y="211.0"/>
+        <di_1:waypoint x="650.0" y="314.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_q_vfsFrXEem3-aaXI-R1Ww" bpmnElement="_q_u4oFrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="724.0" y="345.0"/>
+        <di_1:waypoint x="795.0" y="345.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_sGr5o1rXEem3-aaXI-R1Ww" bpmnElement="_sGr5oFrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="838.0" y="358.0"/>
+        <di_1:waypoint x="897.0" y="358.0"/>
+        <di_1:waypoint x="897.0" y="375.0"/>
+        <di_1:waypoint x="928.0" y="375.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_smFLY1rXEem3-aaXI-R1Ww" bpmnElement="_smFLYFrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="838.0" y="344.0"/>
+        <di_1:waypoint x="897.0" y="344.0"/>
+        <di_1:waypoint x="897.0" y="309.0"/>
+        <di_1:waypoint x="928.0" y="309.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_uqbBs1rXEem3-aaXI-R1Ww" bpmnElement="_uqbBsFrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="1028.0" y="304.0"/>
+        <di_1:waypoint x="1087.0" y="304.0"/>
+        <di_1:waypoint x="1087.0" y="346.0"/>
+        <di_1:waypoint x="1175.0" y="346.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_vU3F0FrXEem3-aaXI-R1Ww" bpmnElement="_vU1QoFrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="1028.0" y="374.0"/>
+        <di_1:waypoint x="1175.0" y="374.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_wuX2c1rXEem3-aaXI-R1Ww" bpmnElement="_wuX2cFrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="724.0" y="105.0"/>
+        <di_1:waypoint x="1346.0" y="105.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_xPOgwFrXEem3-aaXI-R1Ww" bpmnElement="_xPNSoFrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="1208.0" y="331.0"/>
+        <di_1:waypoint x="1208.0" y="224.0"/>
+        <di_1:waypoint x="1347.0" y="224.0"/>
+        <di_1:waypoint x="1347.0" y="140.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="_xuhr41rXEem3-aaXI-R1Ww" bpmnElement="_xuhr4FrXEem3-aaXI-R1Ww">
+        <di_1:waypoint x="1389.0" y="118.0"/>
+        <di_1:waypoint x="1479.0" y="118.0"/>
+        <di:BPMNLabel/>
+      </di:BPMNEdge>
+    </di:BPMNPlane>
+    <di:BPMNLabelStyle id="_OvXk4FrYEem3-aaXI-R1Ww">
+      <dc:Font isBold="false" isItalic="false" isStrikeThrough="false" isUnderline="false" name="Ubuntu" size="9.0"/>
+    </di:BPMNLabelStyle>
+  </di:BPMNDiagram>
+</model:definitions>

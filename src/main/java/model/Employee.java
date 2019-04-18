@@ -1,23 +1,23 @@
 package model;
 
 public class Employee {
-    private String value = "";
+    private String name = "";
     private String description = "";
 
     public Employee() {
     }
 
-    public Employee(String value, String description) {
-        this.value = value;
+    public Employee(String name, String description) {
+        this.name = name;
         this.description = description;
     }
 
-    public String getValue() {
-        return value;
+    public String getName() {
+        return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -31,7 +31,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "value='" + value + '\'' +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

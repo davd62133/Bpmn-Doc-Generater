@@ -48,23 +48,23 @@
       <contract xmi:type="process:Contract" xmi:id="_kB7ttvPgEeiqiaZ7DNbcGg"/>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_kB7tt_PgEeiqiaZ7DNbcGg">
         <name xmi:type="expression:Expression" xmi:id="_kB7tuPPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
-        <value xmi:type="expression:Expression" xmi:id="_kB7tufPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
+        <name xmi:type="expression:Expression" xmi:id="_kB7tufPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
       </searchIndexes>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_kB7tuvPgEeiqiaZ7DNbcGg">
         <name xmi:type="expression:Expression" xmi:id="_kB7tu_PgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
-        <value xmi:type="expression:Expression" xmi:id="_kB7tvPPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
+        <name xmi:type="expression:Expression" xmi:id="_kB7tvPPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
       </searchIndexes>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_kB7tvfPgEeiqiaZ7DNbcGg">
         <name xmi:type="expression:Expression" xmi:id="_kB7tvvPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
-        <value xmi:type="expression:Expression" xmi:id="_kB7tv_PgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
+        <name xmi:type="expression:Expression" xmi:id="_kB7tv_PgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
       </searchIndexes>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_kB7twPPgEeiqiaZ7DNbcGg">
         <name xmi:type="expression:Expression" xmi:id="_kB7twfPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
-        <value xmi:type="expression:Expression" xmi:id="_kB7twvPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
+        <name xmi:type="expression:Expression" xmi:id="_kB7twvPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
       </searchIndexes>
       <searchIndexes xmi:type="process:SearchIndex" xmi:id="_kB7tw_PgEeiqiaZ7DNbcGg">
         <name xmi:type="expression:Expression" xmi:id="_kB7txPPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
-        <value xmi:type="expression:Expression" xmi:id="_kB7txfPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
+        <name xmi:type="expression:Expression" xmi:id="_kB7txfPgEeiqiaZ7DNbcGg" content="" returnTypeFixed="true"/>
       </searchIndexes>
     </elements>
     <datatypes xmi:type="process:BooleanType" xmi:id="_kB7txvPgEeiqiaZ7DNbcGg" name="Boolean"/>

@@ -5,6 +5,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 //Finally, import the W3C definitions for a DOM, DOM exceptions, entities and nodes:
+import model.Employee;
+import model.Main;
 import model.Process;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -18,6 +20,8 @@ import org.w3c.dom.NodeList;
 public class xmlechoparser {
 
     static final String outputEncoding = "UTF-8";
+
+    private static Main main = new Main();
 
     private static void usage() {
         System.out.println("Usage: xmlechoparser file1");
@@ -41,14 +45,30 @@ public class xmlechoparser {
 
     private static void navigate(Node n) {
         navigate(n, "",false);
+        System.out.println(main);
     }
 
     private static void navigateCollaboration(Node n, String prefix){
-        // Navegar los atributos del nodo
-        NamedNodeMap childAttributes = n.getAttributes();
-        if (childAttributes != null) {
-            for (int i = 0; i < childAttributes.getLength(); i++) {
-                navigateCollaboration(childAttributes.item(i), prefix + "|a----");
+        if(n.getNodeName().equals("model:participant")){
+
+            if(n.getAttributes().getNamedItem("processRef")!=null){
+                Process process = new Process();
+                process.setName(n.getAttributes().getNamedItem("name").getNodeValue());
+                for(int i = 0; i<n.getChildNodes().getLength();i++){
+                    if(n.getChildNodes().item(i).getNodeName().equals("model:documentation")){
+                        process.setDescription(n.getChildNodes().item(i).getChildNodes().item(0).getNodeValue());
+                    }
+                }
+                main.addProcess(process);
+            }else{
+                Employee employee = new Employee();
+                employee.setName(n.getAttributes().getNamedItem("name").getNodeValue());
+                for(int i = 0; i<n.getChildNodes().getLength();i++){
+                    if(n.getChildNodes().item(i).getNodeName().equals("model:documentation")){
+                        employee.setDescription(n.getChildNodes().item(i).getChildNodes().item(0).getNodeValue());
+                    }
+                }
+                main.getProcesses().get(0).addEmployee(employee);
             }
         }
 
@@ -60,31 +80,36 @@ public class xmlechoparser {
     }
 
     private static void navigate(Node n, String prefix,boolean print) {
-        if(n.getNodeName().equals("model:collaboration")
-        || n.getNodeName().equals("model:process")) print = true;
-        /**if(n.getNodeName().equals("#text")
-        || n.getNodeName().equals("model:ioSpecification")
-        || n.getNodeName().equals("model:flowNodeRef")) print = false;**/
-        if(print){
-            System.out.println(prefix + "Node name : " + n.getNodeName());
-            System.out.println(prefix + "Node type : " + getNodeTypeName(n.getNodeType()));
-            System.out.println(prefix + "Node value: " + n.getNodeValue());
-        }
+        if(n.getNodeName().equals("model:collaboration")){
+            navigateCollaboration(n,"");
+        }else {
+            /**if(n.getNodeName().equals("model:collaboration")
+             || n.getNodeName().equals("model:process")) print = true;
+             //if(n.getNodeName().equals("#text")
+             || n.getNodeName().equals("model:ioSpecification")
+             || n.getNodeName().equals("model:flowNodeRef")) print = false;//
+             if(print){
+             System.out.println(prefix + "Node name : " + n.getNodeName());
+             System.out.println(prefix + "Node type : " + getNodeTypeName(n.getNodeType()));
+             System.out.println(prefix + "Node value: " + n.getNodeValue());
+             }**/
 
-        // Navegar los atributos del nodo
-        NamedNodeMap childAttributes = n.getAttributes();
-        if (childAttributes != null) {
-            for (int i = 0; i < childAttributes.getLength(); i++) {
-                navigate(childAttributes.item(i), prefix + "|a----",print);
+            // Navegar los atributos del nodo
+            NamedNodeMap childAttributes = n.getAttributes();
+            if (childAttributes != null) {
+                for (int i = 0; i < childAttributes.getLength(); i++) {
+                    navigate(childAttributes.item(i), prefix + "|a----", print);
+                }
             }
+
+            //Navegar los nodos hijo del nodo actual
+            NodeList childnodes = n.getChildNodes();
+            for (int i = 0; i < childnodes.getLength(); i++) {
+                navigate(childnodes.item(i), prefix + "|-----", print);
+            }
+            //System.out.println(Process.print());
         }
 
-        //Navegar los nodos hijo del nodo actual
-        NodeList childnodes = n.getChildNodes();
-        for (int i = 0; i < childnodes.getLength(); i++) {
-            navigate(childnodes.item(i), prefix + "|-----",print);
-        }
-        System.out.println(Process.print());
     }
 
     private static String getNodeTypeName(short nodeType) {

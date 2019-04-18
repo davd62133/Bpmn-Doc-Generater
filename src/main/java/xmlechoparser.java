@@ -6,6 +6,7 @@ import java.io.File;
 
 //Finally, import the W3C definitions for a DOM, DOM exceptions, entities and nodes:
 import model.Employee;
+import model.Lane;
 import model.Main;
 import model.Process;
 import org.w3c.dom.Document;
@@ -79,9 +80,51 @@ public class xmlechoparser {
         }
     }
 
+    private static void navigateLaneSet(Node n, String prefix){
+        if(n.hasChildNodes()){
+            for(int i = 0; i<n.getChildNodes().getLength();i++){
+                if(n.getChildNodes().item(i).hasChildNodes()){
+                    Lane lane = new Lane();
+                    for(int j = 0; j< n.getChildNodes().item(i).getChildNodes().getLength();j++){
+                        if(n.getChildNodes().item(i).getChildNodes().item(j).getNodeName().equals("model:documentation")){
+                            lane.setDescription(n.getChildNodes().item(i).getChildNodes().item(j).getChildNodes().item(0).getNodeValue());
+                        }else if(n.getChildNodes().item(i).getChildNodes().item(j).getNodeName().equals("model:flowNodeRef")){
+                            lane.addRefernece(n.getChildNodes().item(i).getChildNodes().item(j).getChildNodes().item(0).getNodeValue());
+                        }
+                    }
+                    main.getProcesses().get(0).addLane(lane);
+                }
+            }
+        }
+    }
+
+    private static void navigateProcess(Node n, String prefix){
+        if(n.getNodeName().equals("model:laneSet")){
+            navigateLaneSet(n,"");
+        }else{
+
+
+            // Navegar los atributos del nodo
+            NamedNodeMap childAttributes = n.getAttributes();
+            if (childAttributes != null) {
+                for (int i = 0; i < childAttributes.getLength(); i++) {
+                    navigateProcess(childAttributes.item(i), prefix + "|a----");
+                }
+            }
+
+            //Navegar los nodos hijo del nodo actual
+            NodeList childnodes = n.getChildNodes();
+            for (int i = 0; i < childnodes.getLength(); i++) {
+                navigateProcess(childnodes.item(i), prefix + "|-----");
+                }
+        }
+    }
+
     private static void navigate(Node n, String prefix,boolean print) {
         if(n.getNodeName().equals("model:collaboration")){
             navigateCollaboration(n,"");
+        }else if(n.getNodeName().equals("model:process")){
+            navigateProcess(n,"");
         }else {
             /**if(n.getNodeName().equals("model:collaboration")
              || n.getNodeName().equals("model:process")) print = true;
@@ -107,7 +150,6 @@ public class xmlechoparser {
             for (int i = 0; i < childnodes.getLength(); i++) {
                 navigate(childnodes.item(i), prefix + "|-----", print);
             }
-            //System.out.println(Process.print());
         }
 
     }

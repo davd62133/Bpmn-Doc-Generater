@@ -10,6 +10,10 @@ public class Lane {
 
     private Employee employee;
 
+    private ArrayList<Task> tasks = new ArrayList<Task>();
+
+    public void addTask(Task task){tasks.add(task);}
+
     public void addRefernece(String s){references.add(s);}
 
     public String getDescription() {
@@ -36,12 +40,21 @@ public class Lane {
         this.employee = employee;
     }
 
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public String toString() {
         return "Lane{" +
                 "description='" + description + '\'' +
                 ", references=" + references +
                 ", employee=" + employee +
+                ", tasks=" + tasks +
                 '}';
     }
 }

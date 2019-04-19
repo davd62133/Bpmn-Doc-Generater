@@ -5,9 +5,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 //Finally, import the W3C definitions for a DOM, DOM exceptions, entities and nodes:
-import model.Employee;
-import model.Lane;
-import model.Main;
+import model.*;
 import model.Process;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -46,7 +44,7 @@ public class xmlechoparser {
 
     private static void navigate(Node n) {
         navigate(n, "",false);
-        System.out.println(main);
+        //System.out.println(main);
     }
 
     private static void navigateCollaboration(Node n, String prefix){
@@ -101,22 +99,35 @@ public class xmlechoparser {
     private static void navigateProcess(Node n, String prefix){
         if(n.getNodeName().equals("model:laneSet")){
             navigateLaneSet(n,"");
+        }else if(n.getNodeName().equals("model:sequenceFlow")){
+            Task first = main.getProcesses().get(0).getTaskById(n.getAttributes().getNamedItem("sourceRef").getNodeValue());
+            Task second = main.getProcesses().get(0).getTaskById(n.getAttributes().getNamedItem("targetRef").getNodeValue());
+            first.addDestination(second);
+            second.addOrigin(first);
         }else{
-
-
-            // Navegar los atributos del nodo
-            NamedNodeMap childAttributes = n.getAttributes();
-            if (childAttributes != null) {
-                for (int i = 0; i < childAttributes.getLength(); i++) {
-                    navigateProcess(childAttributes.item(i), prefix + "|a----");
+            if(!n.getNodeName().equals("#text") && !n.getNodeName().equals("model:ioSpecification")
+            && !n.getNodeName().equals("model:inputSet")&&!n.getNodeName().equals("model:outputSet")
+            &&!n.getNodeName().equals("model:process")&&!n.getNodeName().equals("model:documentation")){
+                Task task = new Task();
+                task.setType(n.getNodeName().replace("model:",""));
+                task.setId(n.getAttributes().getNamedItem("id").getNodeValue());
+                task.setName(n.getAttributes().getNamedItem("name").getNodeValue());
+                if(n.hasChildNodes()) {
+                    //Navegar los nodos hijo del nodo actual
+                    NodeList childnodes = n.getChildNodes();
+                    for (int i = 0; i < childnodes.getLength(); i++) {
+                        if(childnodes.item(i).hasChildNodes()){
+                            task.setDescription(childnodes.item(i).getChildNodes().item(0).getNodeValue());
+                        }
+                    }
                 }
+                main.getProcesses().get(0).addTask(task);
             }
-
             //Navegar los nodos hijo del nodo actual
             NodeList childnodes = n.getChildNodes();
             for (int i = 0; i < childnodes.getLength(); i++) {
                 navigateProcess(childnodes.item(i), prefix + "|-----");
-                }
+            }
         }
     }
 

@@ -14,6 +14,24 @@ public class Process {
 
     public void addEmployee(Employee employee){employees.add(employee);}
 
+    public void addTask(Task task){
+        for(Lane l:lanes){
+            for(String s:l.getReferences()){
+                if(s.equals(task.getId())) l.addTask(task);
+            }
+        }
+    }
+
+    public Task getTaskById(String id){
+        Task task = null;
+        for(Lane l:lanes){
+            for(Task t:l.getTasks()){
+                if(t.getId().equals(id)) task=t;
+            }
+        }
+        return task;
+    }
+
     public void addLane(Lane lane){
         lane.setEmployee(employees.get(lanes.size()));
         lanes.add(lane);

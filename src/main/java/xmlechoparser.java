@@ -226,6 +226,7 @@ public class xmlechoparser {
                                 tr(
                                         th("Lane Name").withStyle("border: 1px solid black;border-collapse: collapse"),
                                         th("Description").withStyle("border: 1px solid black;border-collapse: collapse"),
+                                        th("Employee").withStyle("border: 1px solid black;border-collapse: collapse"),
                                         th("Tasks").withStyle("border: 1px solid black;border-collapse: collapse")
                                 ).withStyle("border: 1px solid black;border-collapse: collapse"),
                                 each(p.getLanes(), l -> tr(

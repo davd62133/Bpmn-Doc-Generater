@@ -2,7 +2,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 //These classes read the sample XML file and manage output:
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 //Finally, import the W3C definitions for a DOM, DOM exceptions, entities and nodes:
 import model.*;
@@ -11,6 +14,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import static j2html.TagCreator.*;
 
 /**
  *
@@ -45,6 +49,7 @@ public class xmlechoparser {
     private static void navigate(Node n) {
         navigate(n, "",false);
         //System.out.println(main);
+        generateHTML();
     }
 
     private static void navigateCollaboration(Node n, String prefix){
@@ -83,6 +88,7 @@ public class xmlechoparser {
             for(int i = 0; i<n.getChildNodes().getLength();i++){
                 if(n.getChildNodes().item(i).hasChildNodes()){
                     Lane lane = new Lane();
+                    lane.setName(n.getChildNodes().item(i).getAttributes().getNamedItem("name").getNodeValue());
                     for(int j = 0; j< n.getChildNodes().item(i).getChildNodes().getLength();j++){
                         if(n.getChildNodes().item(i).getChildNodes().item(j).getNodeName().equals("model:documentation")){
                             lane.setDescription(n.getChildNodes().item(i).getChildNodes().item(j).getChildNodes().item(0).getNodeValue());
@@ -207,5 +213,82 @@ public class xmlechoparser {
         }
 
         return respuesta;
+    }
+
+    private static void generateHTML(){
+        Process p = main.getProcesses().get(0);
+        String s = body(
+                h1("Process "+p.getName()),
+                div("Process Description: "+p.getDescription()),
+                br(),
+                table(
+                        tbody(
+                                tr(
+                                        th("Lane Name").withStyle("border: 1px solid black;border-collapse: collapse"),
+                                        th("Description").withStyle("border: 1px solid black;border-collapse: collapse"),
+                                        th("Tasks").withStyle("border: 1px solid black;border-collapse: collapse")
+                                ).withStyle("border: 1px solid black;border-collapse: collapse"),
+                                each(p.getLanes(), l -> tr(
+                                        td(l.getName()).withStyle("border: 1px solid black;border-collapse: collapse"),
+                                        td(l.getDescription()).withStyle("border: 1px solid black;border-collapse: collapse"),
+                                        td(
+                                                table(
+                                                        tbody(
+                                                                tr(
+                                                                        td(
+                                                                        "In charge: " + l.getEmployee().getName()
+                                                                        ).withStyle("border: 1px solid black;border-collapse: collapse")
+                                                                ),
+                                                                tr(
+                                                                        td(
+                                                                        " Description: "+ l.getEmployee().getDescription()).withStyle("border: 1px solid black;border-collapse: collapse")
+                                                                )
+                                                        )
+                                                )
+                                        ),
+
+                                        each(l.getTasks(), t -> td(
+                                                table(
+                                                        tbody(
+                                                                tr(
+                                                                        td(
+                                                                                "Task name: " +t.getName()
+                                                                        ).withStyle("border: 1px solid black;border-collapse: collapse")
+                                                                ),
+                                                                tr(
+                                                                        td(
+                                                                                " Task Description: "+t.getDescription()
+                                                                        ).withStyle("border: 1px solid black;border-collapse: collapse")
+                                                                ),
+                                                                tr(
+                                                                        td(
+                                                                                " Type: "+t.getType()
+                                                                        ).withStyle("border: 1px solid black;border-collapse: collapse")
+                                                                ),
+                                                                tr(
+                                                                        td(
+                                                                        " Origins:" + each(t.getOrigins(), o -> div(o.getName()+" ")).render().replace("<div>","").replace("</div>","")+" "
+                                                                        ).withStyle("border: 1px solid black;border-collapse: collapse")
+                                                                ),
+                                                                tr(
+                                                                        td(
+                                                                                " Destinations:" + each(t.getDestinations(), o -> div(o.getName()+" ")).render().replace("<div>","").replace("</div>","")+" "
+                                                                        ).withStyle("border: 1px solid black;border-collapse: collapse")
+                                                                )
+                                                        )
+                                                )
+                                        ).withStyle("border: 1px solid black;border-collapse: collapse"))
+
+                                ).withStyle("border: 1px solid black;border-collapse: collapse"))
+                        )
+                ).withStyle("border: 1px solid black;border-collapse: collapse")
+        ).render();
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("example.html"));
+            writer.write(s);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

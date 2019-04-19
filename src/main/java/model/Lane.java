@@ -12,6 +12,8 @@ public class Lane {
 
     private ArrayList<Task> tasks = new ArrayList<Task>();
 
+    private String name;
+
     public void addTask(Task task){tasks.add(task);}
 
     public void addRefernece(String s){references.add(s);}
@@ -48,6 +50,14 @@ public class Lane {
         this.tasks = tasks;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Lane{" +
@@ -55,6 +65,7 @@ public class Lane {
                 ", references=" + references +
                 ", employee=" + employee +
                 ", tasks=" + tasks +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
